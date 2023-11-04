@@ -278,6 +278,22 @@ architecture Behavioral of top is
 		s : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
 	);
 	END COMPONENT;
+	
+	COMPONENT i2c_master
+	PORT(
+		clk : IN std_logic;
+		reset_n : IN std_logic;
+		ena : IN std_logic;
+		addr : IN std_logic_vector(6 downto 0);
+		rw : IN std_logic;
+		data_wr : IN std_logic_vector(7 downto 0);    
+		sda : INOUT std_logic;
+		scl : INOUT std_logic;      
+		busy : OUT std_logic;
+		data_rd : OUT std_logic_vector(7 downto 0);
+		ack_error : OUT std_logic
+		);
+	END COMPONENT;
 
 type tones_t is array (7 downto 0) of std_logic_vector(23 downto 0);
 constant cTones : tones_t := (X"000224", X"000267", X"0002B3", X"0002DB", X"000336", X"00039A", X"00040B", X"000449");
